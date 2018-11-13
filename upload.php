@@ -113,7 +113,7 @@
 								echo "</ul><br/>";
 
 								echo count($uploadedFiles)." file(s) are successfully uploaded.";
-								$command = 'java -jar files/SEAT.jar < files/cliInput';
+								$command = 'java -jar files/SEAT.jar < files/cliInput; tar czf files/seatOutput/emails.tar.gz files/seatOutput/studentEmails/';
 								$proc = popen($command, 'r');
 								echo '<pre>';
 								while (!feof($proc))
@@ -123,7 +123,14 @@
 								}
 								echo '</pre>';
 								$file = "files/seatOutput/output.csv";
-								echo "<a href='download.php?name=".$file."'>Click Here to View the Output</a> ";
+								echo "<a href='download.php?name=".$file."'>Click Here to View the Output</a></br> ";
+								$emails = "files/seatOutput/emails.tar.gz";
+								echo "<a href='download.php?name=".$emails."'>Click Here to Download the Emails</a></br>" ;
+								echo "<form method='post' action='uploadDB.php'>" ;
+								echo "Enter a name for Database to save: " ;
+								echo "<input type='text' name='database'></br>" ;
+								echo "<input type='submit' value='Save' name='btnSubmit'></br>" ;
+								echo "</form>" ;
 							}
 						}
 						else{
