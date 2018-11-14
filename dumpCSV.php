@@ -20,7 +20,7 @@ if(isset($_POST["btnSubmit"]) && isset($_POST["database"]) && $_POST["database"]
 
     header('Content-Type: application/excel');
     header('Content-Disposition: attachment; filename="output.csv"');
-    $sql = "SELECT * FROM `tbl_output` limit 0,10";
+    $sql = "SELECT * FROM `tbl_output`";
 
     mysql_select_db($dbName);
 

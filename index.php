@@ -1,4 +1,5 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
 
@@ -74,73 +75,89 @@
               <a href="remove.php"><button type="button" class="btn btn-danger">Remove Uploaded Files</button></a>
 
               <form action="dumpCSV.php" method="post">
-                <label>Enter a name for Database to download: </label>
-                <input type="text" name="database" /></br></br>
-                <button type="submit" class="btn btn-primary" name="btnSubmit">Download</button>
-              </form>
-            </div>
-            <!-- /.panel-body -->
-          </div>
-        </div>
+                <label>Select a name for Database to download: </label>
+                <?php
+                $ini_array = parse_ini_file("config/config.cfg");
+                $link = mysql_connect($ini_array['hostname'].':'.$ini_array['port'], $ini_array['username'], $ini_array['password']);
+                $res = mysql_query("SHOW DATABASES");
+                echo '<select name="database"><option value="">Select a Database</option>';
+                while ($row = mysql_fetch_assoc($res)) {
 
-        <div class="col-lg-6">
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              Uploaded Files
-            </div>
-            <!-- /.panel-heading -->
-            <div class="panel-body">
-              <?php
-              $dir = "files/";
-              // Open a directory, and read its contents
-              if (is_dir($dir)){
-                if ($dh = opendir($dir)){
-                  while (($file = readdir($dh)) !== false){
-                    if ($file != "." && $file != ".." && strtolower(substr($file, strrpos($file, '.') + 1)) == 'csv') {
-                      echo "<a href='download.php?name=".$dir.$file."'>".$file."</a></br> ";
-                    }
+                  $x = split('_',$row['Database']);
+                  if ($x[0] == 'db' && $x[1] == 'seat')
+                  {
+                  echo '<option value="'.$x[2].'">'.$x[2].'</option>';
                   }
-                  closedir($dh);
                 }
-              }
-              ?>
-            </div>
-            <!-- /.panel-body -->
+                echo '</select>';
+                ?>
+                <!-- <input type="text" name="database" /> -->
+              </br></br>
+              <button type="submit" class="btn btn-primary" name="btnSubmit">Download</button>
+            </form>
           </div>
+          <!-- /.panel-body -->
         </div>
-
       </div>
-      <!-- /.row -->
+
+      <div class="col-lg-6">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            Uploaded Files
+          </div>
+          <!-- /.panel-heading -->
+          <div class="panel-body">
+            <?php
+            $dir = "files/";
+            // Open a directory, and read its contents
+            if (is_dir($dir)){
+              if ($dh = opendir($dir)){
+                while (($file = readdir($dh)) !== false){
+                  if ($file != "." && $file != ".." && strtolower(substr($file, strrpos($file, '.') + 1)) == 'csv') {
+                    echo "<a href='download.php?name=".$dir.$file."'>".$file."</a></br> ";
+                  }
+                }
+                closedir($dh);
+              }
+            }
+            ?>
+          </div>
+          <!-- /.panel-body -->
+        </div>
+      </div>
+
     </div>
-    <!-- /#page-wrapper -->
-
+    <!-- /.row -->
   </div>
-  <!-- /#wrapper -->
+  <!-- /#page-wrapper -->
 
-  <!-- jQuery -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  
-  <!-- Bootstrap Core JavaScript -->
-  <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+</div>
+<!-- /#wrapper -->
 
-  <!-- Metis Menu Plugin JavaScript -->
-  <script src="vendor/metisMenu/metisMenu.min.js"></script>
+<!-- jQuery -->
+<script src="vendor/jquery/jquery.min.js"></script>
 
-  <!-- Morris Charts JavaScript -->
-  <script src="vendor/raphael/raphael.min.js"></script>
-  <script src="vendor/morrisjs/morris.min.js"></script>
-  <script src="data/morris-data.js"></script>
+<!-- Bootstrap Core JavaScript -->
+<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 
-  <!-- Custom Theme JavaScript -->
-  <script src="dist/js/sb-admin-2.js"></script>
-  <?php
-  if (isset($_GET["msg"]))
-  {
-    echo '<script language="javascript">';
-    echo 'alert("'.$_GET["msg"].'")';
-    echo '</script>';
-  }
-  ?>
+<!-- Metis Menu Plugin JavaScript -->
+<script src="vendor/metisMenu/metisMenu.min.js"></script>
+
+<!-- Morris Charts JavaScript -->
+<script src="vendor/raphael/raphael.min.js"></script>
+<script src="vendor/morrisjs/morris.min.js"></script>
+<script src="data/morris-data.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="dist/js/sb-admin-2.js"></script>
+<?php
+if (isset($_GET["msg"]))
+{
+  echo '<script language="javascript">';
+  echo 'alert("'.$_GET["msg"].'")';
+  echo '</script>';
+}
+?>
 
 </body>
 
