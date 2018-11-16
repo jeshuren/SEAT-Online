@@ -53,112 +53,133 @@
           <div class="col-lg-6">
             <div class="panel panel-default">
               <div class="panel-heading">
-                File Upload
+                Algorithm Execution
               </div>
               <!-- /.panel-heading -->
               <div class="panel-body">
-                The files required to be uploaded are(please name the files accordingly),
+                The following files required to be uploaded are (please name the files accordingly),
                 <ul>
                   <li>students.csv</li>
                   <li>courses.csv</li>
                   <li>studentPreferences.csv</li>
                   <li>slot_config.csv</li>
                 </ul>
+                <a href="remove.php"><button type="button" class="btn btn-danger">Remove Last Uploaded Files</button></a>
+                <br />
+                <br />
 
                 <form action="upload.php" method="post" enctype="multipart/form-data" name="formUploadFile">
-                  <label>Select input files to upload:</label></br>
-                  <input type="file" name="files[]" multiple="multiple" /></br></br>
-                  <button type="submit" class="btn btn-primary" name="btnSubmit">Upload File</button>
+                  <label>Coure Preferences</label> <br />
+                  <input type="radio" name="coursePreferences" value="1" disabled checked>Generate new coursePreferences</input>
+                  <input type="radio" name="coursePreferences" value="2" disabled>Use uploaded coursePreferences.csv</input>
+                  <br />
+                  <br />
+                  <label>Algorithm to run</label> <br />
+                  <input type="radio" name="algorithm" value="1" disabled checked>Iterative HR</input>
+                  <input type="radio" name="algorithm" value="2" disabled>First Preference Allotment</input>
+                  <input type="radio" name="algorithm" value="3" disabled>Slotwise HR (with Heuristic 1)</input>
+                  <input type="radio" name="algorithm" value="4" disabled>Slotwise HR (with Heuristic 2)</input>
+                  <br />
+                  <br />
+                  <label>Select input files to upload:</label><br />
+                  <input type="file" name="files[]" multiple="multiple" /><br /><br />
+                  <button type="submit" class="btn btn-primary" name="btnSubmit">Execute Algorithm</button>
                 </form>
 
-              </br>
-              <a href="remove.php"><button type="button" class="btn btn-danger">Remove Uploaded Files</button></a>
 
-              <form action="dumpCSV.php" method="post">
-                <label>Select a name for Database to download: </label>
-                <?php
-                $ini_array = parse_ini_file("config/config.cfg");
-                $link = mysql_connect($ini_array['hostname'].':'.$ini_array['port'], $ini_array['username'], $ini_array['password']);
-                $res = mysql_query("SHOW DATABASES");
-                echo '<select name="database"><option value="">Select a Database</option>';
-                while ($row = mysql_fetch_assoc($res)) {
+              </div>
+              <!-- /.panel-body -->
+            </div>
+          </div>
 
-                  $x = split('_',$row['Database']);
-                  if ($x[0] == 'db' && $x[1] == 'seat')
-                  {
-                  echo '<option value="'.$x[2].'">'.$x[2].'</option>';
+          <div class="col-lg-6">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                Default Files
+              </div>
+              <!-- /.panel-heading -->
+              <div class="panel-body">
+                <ul>
+                  <?php
+                  $dir = "files/";
+                  // Open a directory, and read its contents
+                  if (is_dir($dir)){
+                    if ($dh = opendir($dir)){
+                      while (($file = readdir($dh)) !== false){
+                        if ($file != "." && $file != ".." && strtolower(substr($file, strrpos($file, '.') + 1)) == 'csv') {
+                          echo "<li><a href='download.php?name=".$dir.$file."'>".$file."</a></li>";
+                        }
+                      }
+                      closedir($dh);
+                    }
                   }
-                }
-                echo '</select>';
-                ?>
-                <!-- <input type="text" name="database" /> -->
-              </br></br>
-              <button type="submit" class="btn btn-primary" name="btnSubmit">Download</button>
-            </form>
+                  ?>
+                </div>
+                <!-- /.panel-body -->
+              </div>
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  Previous Allocation Download
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                  <form action="dumpCSV.php" method="post">
+                    <label>Select the name for Database to download: </label>
+                    <?php
+                    $ini_array = parse_ini_file("config/config.cfg");
+                    $link = mysql_connect($ini_array['hostname'].':'.$ini_array['port'], $ini_array['username'], $ini_array['password']);
+                    $res = mysql_query("SHOW DATABASES");
+                    echo '<select name="database"><option value="">Select a Database</option>';
+                    while ($row = mysql_fetch_assoc($res)) {
+
+                      $x = split('_',$row['Database']);
+                      if ($x[0] == 'db' && $x[1] == 'seat')
+                      {
+                        echo '<option value="'.$x[2].'">'.$x[2].'</option>';
+                      }
+                    }
+                    echo '</select>';
+                    ?>
+                    <!-- <input type="text" name="database" /> -->
+                    <br /><br />
+                    <button type="submit" class="btn btn-primary" name="btnSubmit">Download</button>
+                  </form>
+                </div>
+              </div>
+
+            </div>
+            <!-- /.row -->
           </div>
-          <!-- /.panel-body -->
+          <!-- /#page-wrapper -->
+
         </div>
-      </div>
+        <!-- /#wrapper -->
 
-      <div class="col-lg-6">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            Uploaded Files
-          </div>
-          <!-- /.panel-heading -->
-          <div class="panel-body">
-            <?php
-            $dir = "files/";
-            // Open a directory, and read its contents
-            if (is_dir($dir)){
-              if ($dh = opendir($dir)){
-                while (($file = readdir($dh)) !== false){
-                  if ($file != "." && $file != ".." && strtolower(substr($file, strrpos($file, '.') + 1)) == 'csv') {
-                    echo "<a href='download.php?name=".$dir.$file."'>".$file."</a></br> ";
-                  }
-                }
-                closedir($dh);
-              }
-            }
-            ?>
-          </div>
-          <!-- /.panel-body -->
-        </div>
-      </div>
+        <!-- jQuery -->
+        <script src="vendor/jquery/jquery.min.js"></script>
 
-    </div>
-    <!-- /.row -->
-  </div>
-  <!-- /#page-wrapper -->
+        <!-- Bootstrap Core JavaScript -->
+        <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 
-</div>
-<!-- /#wrapper -->
+        <!-- Metis Menu Plugin JavaScript -->
+        <script src="vendor/metisMenu/metisMenu.min.js"></script>
 
-<!-- jQuery -->
-<script src="vendor/jquery/jquery.min.js"></script>
+        <!-- Morris Charts JavaScript -->
+        <script src="vendor/raphael/raphael.min.js"></script>
+        <script src="vendor/morrisjs/morris.min.js"></script>
+        <script src="data/morris-data.js"></script>
 
-<!-- Bootstrap Core JavaScript -->
-<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+        <!-- Custom Theme JavaScript -->
+        <script src="dist/js/sb-admin-2.js"></script>
+        <?php
+        if (isset($_GET["msg"]))
+        {
+          echo '<script language="javascript">';
+          echo 'alert("'.$_GET["msg"].'")';
+          echo '</script>';
+        }
+        ?>
 
-<!-- Metis Menu Plugin JavaScript -->
-<script src="vendor/metisMenu/metisMenu.min.js"></script>
+      </body>
 
-<!-- Morris Charts JavaScript -->
-<script src="vendor/raphael/raphael.min.js"></script>
-<script src="vendor/morrisjs/morris.min.js"></script>
-<script src="data/morris-data.js"></script>
-
-<!-- Custom Theme JavaScript -->
-<script src="dist/js/sb-admin-2.js"></script>
-<?php
-if (isset($_GET["msg"]))
-{
-  echo '<script language="javascript">';
-  echo 'alert("'.$_GET["msg"].'")';
-  echo '</script>';
-}
-?>
-
-</body>
-
-</html>
+      </html>
