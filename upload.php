@@ -111,7 +111,101 @@
                 }
                 echo "</ul><br/>";
 
+                $file_handle = fopen('files/cliInput', 'w');
+                if (in_array("slot_config.csv", $uploadedFiles))
+                {
+                  fputs($file_handle, "files/upload/slot_config.csv");
+                  fputs($file_handle, "\n");
+                }
+
+                if (in_array("students.csv", $uploadedFiles))
+                {
+                  fputs($file_handle, "files/upload/students.csv");
+                  fputs($file_handle, "\n");
+                }
+
+                if (in_array("courses.csv", $uploadedFiles))
+                {
+                  fputs($file_handle, "files/upload/courses.csv");
+                  fputs($file_handle, "\n");
+                }
+
+                if (in_array("studentPreferences.csv", $uploadedFiles))
+                {
+                  fputs($file_handle, "files/upload/studentPreferences.csv");
+                  fputs($file_handle, "\n");
+                }
+
+                fputs($file_handle, $_POST["coursePreferences"]);
+                fputs($file_handle, "\n");
+
+                if ($_POST["coursePreferences"] == "1")
+                {
+
+                  fputs($file_handle, "coursePreferenceList.csv");
+                  fputs($file_handle, "\n");
+                }
+                elseif ($_POST["coursePreferences"] == "2") {
+                  fputs($file_handle, "files/upload/coursePreferenceList.csv");
+                  fputs($file_handle, "\n");
+                }
+
+                fputs($file_handle, $_POST["algorithm"]);
+                fputs($file_handle, "\n");
+
+                fputs($file_handle, "files/seatOutput");
+                fputs($file_handle, "\n");
+
+                if (in_array("insideDepartmentSpecification.csv", $uploadedFiles))
+                {
+                  fputs($file_handle, "files/upload/insideDepartmentSpecification.csv");
+                  fputs($file_handle, "\n");
+                }
+                else
+                {
+                  fputs($file_handle, "files/insideDepartmentSpecification.csv");
+                  fputs($file_handle, "\n");
+                }
+
+                if (in_array("highPriorityStudents.csv", $uploadedFiles))
+                {
+                  fputs($file_handle, "files/upload/highPriorityStudents.csv");
+                  fputs($file_handle, "\n");
+                }
+                else
+                {
+                  fputs($file_handle, "files/highPriorityStudents.csv");
+                  fputs($file_handle, "\n");
+                }
+
+                if (in_array("batchSpecificMandatedElectives.csv", $uploadedFiles))
+                {
+                  fputs($file_handle, "files/upload/batchSpecificMandatedElectives.csv");
+                  fputs($file_handle, "\n");
+                }
+                else
+                {
+                  fputs($file_handle, "files/batchSpecificMandatedElectives.csv");
+                  fputs($file_handle, "\n");
+                }
+
+                if (in_array("maxCreditLimits.csv", $uploadedFiles))
+                {
+                  fputs($file_handle, "files/upload/maxCreditLimits.csv");
+                  fputs($file_handle, "\n");
+                }
+                else
+                {
+                  fputs($file_handle, "files/maxCreditLimits.csv");
+                  fputs($file_handle, "\n");
+                }
+
+                fputs($file_handle, "2");
+                fputs($file_handle, "\n");
+                fclose($file_handle);
+
                 echo count($uploadedFiles)." file(s) are successfully uploaded.";
+
                 $command = 'java -jar files/SEAT.jar < files/cliInput; tar czf files/seatOutput/emails.tar.gz files/seatOutput/studentEmails/';
                 $proc = popen($command, 'r');
                 echo '<pre>';

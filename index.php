@@ -70,15 +70,15 @@
 
                 <form action="upload.php" method="post" enctype="multipart/form-data" name="formUploadFile">
                   <label>Coure Preferences</label> <br />
-                  <input type="radio" name="coursePreferences" value="1" disabled checked>Generate new coursePreferences</input>
-                  <input type="radio" name="coursePreferences" value="2" disabled>Use uploaded coursePreferences.csv</input>
+                  <input type="radio" name="coursePreferences" value="1" checked>Generate new coursePreferences</input>
+                  <input type="radio" name="coursePreferences" value="2" >Use uploaded coursePreferences.csv</input>
                   <br />
                   <br />
                   <label>Algorithm to run</label> <br />
-                  <input type="radio" name="algorithm" value="1" disabled checked>Iterative HR</input>
-                  <input type="radio" name="algorithm" value="2" disabled>First Preference Allotment</input>
-                  <input type="radio" name="algorithm" value="3" disabled>Slotwise HR (with Heuristic 1)</input>
-                  <input type="radio" name="algorithm" value="4" disabled>Slotwise HR (with Heuristic 2)</input>
+                  <input type="radio" name="algorithm" value="1" checked>Iterative HR</input>
+                  <input type="radio" name="algorithm" value="2" >First Preference Allotment</input>
+                  <input type="radio" name="algorithm" value="3" >Slotwise HR (with Heuristic 1)</input>
+                  <input type="radio" name="algorithm" value="4" >Slotwise HR (with Heuristic 2)</input>
                   <br />
                   <br />
                   <label>Select input files to upload:</label><br />
