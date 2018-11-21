@@ -77,8 +77,8 @@
                   <label>Algorithm to run</label> <br />
                   <input type="radio" name="algorithm" value="1" checked>Iterative HR</input>
                   <input type="radio" name="algorithm" value="2" >First Preference Allotment</input>
-                  <input type="radio" name="algorithm" value="3" >Slotwise HR (with Heuristic 1)</input>
-                  <input type="radio" name="algorithm" value="4" >Slotwise HR (with Heuristic 2)</input>
+                  <!-- <input type="radio" name="algorithm" value="3" >Slotwise HR (with Heuristic 1)</input>
+                  <input type="radio" name="algorithm" value="4" >Slotwise HR (with Heuristic 2)</input> -->
                   <br />
                   <br />
                   <label>Select input files to upload:</label><br />

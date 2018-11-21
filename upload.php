@@ -209,21 +209,29 @@
                 $command = 'java -jar files/SEAT.jar < files/cliInput; tar czf files/seatOutput/emails.tar.gz files/seatOutput/studentEmails/';
                 $proc = popen($command, 'r');
                 echo '<pre>';
+                $outputFromCLI = "";
                 while (!feof($proc))
                 {
-                  echo fread($proc, 4096);
+                  $bufferOutput = fread($proc, 4096);
+                  $outputFromCLI = $outputFromCLI.$bufferOutput;
+                  echo $bufferOutput;
                   @ flush();
                 }
                 echo '</pre>';
-                $file = "files/seatOutput/output.csv";
-                echo "<a href='download.php?name=".$file."'>Click Here to View the Output</a> (File is stored in /var/www/html/seat_allocation/files/seatOutput/output.csv)</br> ";
-                $emails = "files/seatOutput/emails.tar.gz";
-                echo "<a href='download.php?name=".$emails."'>Click Here to Download the Emails</a> (Files are stored in /var/www/html/seat_allocation/files/seatOutput/studentEmails/)</br>" ;
-                echo "<form method='post' action='uploadDB.php'>" ;
-                echo "Enter a name for Database to save: " ;
-                echo "<input type='text' name='database'></br>" ;
-                echo "<input type='submit' value='Save' name='btnSubmit'></br>" ;
-                echo "</form>" ;
+                if (strpos($outputFromCLI, 'Execution over') !== false){
+                  $file = "files/seatOutput/output.csv";
+                  echo "<a href='download.php?name=".$file."'>Click Here to View the Output</a> (File is stored in /var/www/html/seat_allocation/files/seatOutput/output.csv)</br> ";
+                  $emails = "files/seatOutput/emails.tar.gz";
+                  echo "<a href='download.php?name=".$emails."'>Click Here to Download the Emails</a> (Files are stored in /var/www/html/seat_allocation/files/seatOutput/studentEmails/)</br>" ;
+                  echo "<form method='post' action='uploadDB.php'>" ;
+                  echo "Enter a name for Database to save: " ;
+                  echo "<input type='text' name='database'></br>" ;
+                  echo "<input type='submit' value='Save' name='btnSubmit'></br>" ;
+                  echo "</form>" ;
+                }
+                else {
+                  echo "Error in the input files! Please try again.";
+                }
               }
             }
             else{
