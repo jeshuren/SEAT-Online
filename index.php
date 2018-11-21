@@ -38,9 +38,24 @@
 <body>
 
   <div id="wrapper">
-
+  <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                        <li>
+                            <a href="index.php"><i class="fa fa-dashboard fa-fw"></i>Home</a>
+                        </li>
+   		</div>
+   </div>
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+	<div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                        <li>
+                            <a href="index.php"><i class="fa fa-dashboard fa-fw"></i>Home</a>
+                        </li>
+                </div>
+   	</div>
       <div id="page-wrapper">
         <div class="row">
           <div class="col-lg-12">
@@ -82,7 +97,23 @@
                   <br />
                   <br />
                   <label>Select input files to upload:</label><br />
-                  <input type="file" name="files[]" multiple="multiple" /><br /><br />
+                  
+		  <div class="form-group">
+                      <label>Courses List</label>
+                      <input type="file" name="files[]">
+                  </div>
+		  <div class="form-group">
+                      <label>Students List</label>
+                      <input type="file" name="files[]">
+                  </div>
+		  <div class="form-group">
+                      <label>Student Preferences List</label>
+                      <input type="file" name="files[]">
+                  </div>
+		 <div class="form-group">
+                      <label>Slot Config</label>
+                      <input type="file" name="files[]">
+                  </div><br /><br />
                   <button type="submit" class="btn btn-primary" name="btnSubmit">Execute Algorithm</button>
                 </form>
 
