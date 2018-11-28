@@ -146,7 +146,7 @@
                   fputs($file_handle, "\n");
                 }
                 elseif ($_POST["coursePreferences"] == "2") {
-                  fputs($file_handle, "files/upload/coursePreference.csv");
+                  fputs($file_handle, "files/upload/coursePreferences.csv");
                   fputs($file_handle, "\n");
                 }
 
