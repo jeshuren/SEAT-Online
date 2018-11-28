@@ -24,3 +24,5 @@ hs_err_pid*
 
 files/upload/
 files/seatOutput/
+files/upload
+files/seatOutput

@@ -48,6 +48,7 @@
             $errors = array();
             $uploadedFiles = array();
             $extension = array("csv");
+            $filesToUpload = array("students.csv","courses.csv","studentPreferences.csv","slot_config.csv");
             $bytes = 1024;
             $KB = 1024;
             $totalBytes = $bytes * $KB;
@@ -89,6 +90,8 @@
                 array_push($uploadedFiles, $name);
               }
             }
+
+            //$arraysAreEqual = ($uploadedFiles == $filesToUpload);
 
             if($counter>0){
               if(count($errors)>0)
@@ -146,7 +149,7 @@
                   fputs($file_handle, "\n");
                 }
                 elseif ($_POST["coursePreferences"] == "2") {
-                  fputs($file_handle, "files/upload/coursePreferenceList.csv");
+                  fputs($file_handle, "files/upload/coursePreference.csv");
                   fputs($file_handle, "\n");
                 }
 
@@ -234,7 +237,10 @@
                 }
               }
             }
-            else{
+            //elseif ($counter > 0){
+            //  echo "Please, name the files accordingly";
+            //}
+            else {
               echo "Please, Select file(s) to upload.";
             }
           }
