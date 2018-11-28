@@ -39,20 +39,14 @@
   <div id="wrapper">
 
     <!-- Navigation -->
-    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-      	<div class="navbar-default sidebar" role="navigation">
-                <div class="sidebar-nav navbar-collapse">
-                    <ul class="nav" id="side-menu">
-                        <li>
-                            <a href="index.php"><i class="fa fa-dashboard fa-fw"></i>Home</a>
-                        </li>
-                </div>
-   	</div>
+	<?php include("sideBar.php"); ?>
 	<div id="page-wrapper">
         <div class="row">
           <?php
           if(isset($_POST["btnSubmit"]))
           {
+	    $command = 'rm -R files/upload/*';
+	    shell_exec($command);
             $errors = array();
             $uploadedFiles = array();
             $extension = array("csv");

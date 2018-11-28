@@ -40,6 +40,7 @@
   <div id="wrapper">
 
     <!-- Navigation -->
+<?php include("sideBar.php"); ?>
     <div id="page-wrapper">
       <div class="row">
         <?php
