@@ -40,7 +40,15 @@
 
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-      <div id="page-wrapper">
+      	<div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                        <li>
+                            <a href="index.php"><i class="fa fa-dashboard fa-fw"></i>Home</a>
+                        </li>
+                </div>
+   	</div>
+	<div id="page-wrapper">
         <div class="row">
           <?php
           if(isset($_POST["btnSubmit"]))
@@ -48,7 +56,7 @@
             $errors = array();
             $uploadedFiles = array();
             $extension = array("csv");
-            $filesToUpload = array("students.csv","courses.csv","studentPreferences.csv","slot_config.csv");
+            $filesToUpload = array("courses.csv","students.csv","studentPreferences.csv","slot_config.csv");
             $bytes = 1024;
             $KB = 1024;
             $totalBytes = $bytes * $KB;
@@ -59,7 +67,6 @@
             foreach($_FILES["files"]["tmp_name"] as $key=>$tmp_name){
               $temp = $_FILES["files"]["tmp_name"][$key];
               $name = $_FILES["files"]["name"][$key];
-
               if(empty($temp))
               {
                 break;
@@ -79,7 +86,6 @@
                 $UploadOk = false;
                 array_push($errors, $name." is invalid file type.");
               }
-
               if(file_exists($UploadFolder."/".$name) == true){
                 $UploadOk = false;
                 array_push($errors, $name." file is already exist.");
@@ -90,9 +96,6 @@
                 array_push($uploadedFiles, $name);
               }
             }
-
-            //$arraysAreEqual = ($uploadedFiles == $filesToUpload);
-
             if($counter>0){
               if(count($errors)>0)
               {
@@ -237,9 +240,6 @@
                 }
               }
             }
-            //elseif ($counter > 0){
-            //  echo "Please, name the files accordingly";
-            //}
             else {
               echo "Please, Select file(s) to upload.";
             }
