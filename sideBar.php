@@ -4,6 +4,7 @@
             <ul class="nav" id="side-menu">
                 <li>
                     <a href="index.php"><i class="fa fa-dashboard fa-fw"></i>Home</a>
+                    <a href="algo.php"><i class="fa fa-dashboard fa-fw"></i>Algorithm</a>
                 </li>
         </div>
 </div>
