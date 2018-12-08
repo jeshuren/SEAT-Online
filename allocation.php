@@ -1,9 +1,5 @@
 <?php
-include('login.php'); // Includes Login Script
-
-if(isset($_SESSION['login_user'])){
-header("location: allocation.php");
-}
+include('session.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -46,6 +42,7 @@ header("location: allocation.php");
 
   <div id="wrapper">
     <!-- Navigation -->
+    <?php include("sideBar.php"); ?>
     <div id="page-wrapper">
       <div class="row">
         <div class="col-lg-12">
@@ -58,19 +55,11 @@ header("location: allocation.php");
         <div class="col-lg-12">
           <div class="panel panel-default">
             <div class="panel-heading">
-              Login
+              Header goes here...
             </div>
             <!-- /.panel-heading -->
             <div class="panel-body">
-<form action="" method="post">
-<div class="form-group">
-<label>UserName :</label>
-<input class="form-control" id="name" name="username" placeholder="username" type="text" size="20"></br>
-<label>Password :</label>
-<input class="form-control" id="password" name="password" placeholder="**********" type="password" size="20"></br>
-<button name="submit" type="submit" class="btn btn-default">Login</button>
-<span><?php echo $error; ?></span>
-</form>
+              Content goes here...
 
             </div>
             <!-- /.panel-body -->
@@ -92,6 +81,26 @@ header("location: allocation.php");
       <script src="vendor/raphael/raphael.min.js"></script>
       <script src="vendor/morrisjs/morris.min.js"></script>
       <script src="data/morris-data.js"></script>
+      
+      <!-- Custom Theme JavaScript -->
+      <script src="dist/js/sb-admin-2.js"></script>
+      <script language="javascript">
+      $(document).ready(function(){
+        $('input[name="coursePreferences"]').change(function(){
+          if ($(this).val() == 2){
+            alert('Please upload coursePreferences.csv along with other input files!');
+          }
+        });
+      });
+      </script>
+      <?php
+      if (isset($_GET["msg"]))
+      {
+        echo '<script language="javascript">';
+        echo 'alert("'.$_GET["msg"].'")';
+        echo '</script>';
+      }
+      ?>
 
     </body>
 

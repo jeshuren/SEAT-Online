@@ -5,6 +5,7 @@
                 <li>
                     <a href="index.php"><i class="fa fa-dashboard fa-fw"></i>Home</a>
                     <a href="algo.php"><i class="fa fa-dashboard fa-fw"></i>Algorithm</a>
+		    <a href="logout.php"><i class="fa fa-dashboard fa-fw"></i>LogOut</a>
                 </li>
         </div>
 </div>
