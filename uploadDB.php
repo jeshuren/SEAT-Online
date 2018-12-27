@@ -68,6 +68,10 @@
           // Pop the last item from the array
           array_pop($lines);
 
+          if ($_POST["coursePreferences"] == "1") {
+            $lines[5] = "files/seatOutput/coursePreferenceList.csv\n";
+          }
+
           // Join the array back into a string
           $file = join('', $lines);
 
