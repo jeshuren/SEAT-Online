@@ -71,7 +71,7 @@ include('session.php');
               <form action="upload.php" method="post" enctype="multipart/form-data" name="formUploadFile">
                 <label>Coure Preferences</label> <br />
                 <input type="radio" name="coursePreferences" value="1" checked>Generate new coursePreferences</input>
-                <input type="radio" name="coursePreferences" value="2" >Use uploaded coursePreferences.csv</input>
+                <input type="radio" name="coursePreferences" value="2" >Use uploaded coursePreferenceList.csv</input>
                 <br />
                 <br />
                 <label>Algorithm to run</label> <br />
@@ -168,14 +168,14 @@ include('session.php');
       <script src="vendor/raphael/raphael.min.js"></script>
       <script src="vendor/morrisjs/morris.min.js"></script>
       <script src="data/morris-data.js"></script>
-      
+
       <!-- Custom Theme JavaScript -->
       <script src="dist/js/sb-admin-2.js"></script>
       <script language="javascript">
       $(document).ready(function(){
         $('input[name="coursePreferences"]').change(function(){
           if ($(this).val() == 2){
-            alert('Please upload coursePreferences.csv along with other input files!');
+            alert('Please upload coursePreferenceList.csv along with other input files!');
           }
         });
       });

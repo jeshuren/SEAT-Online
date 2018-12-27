@@ -219,13 +219,18 @@
                 }
                 echo '</pre>';
                 if (strpos($outputFromCLI, 'Execution over') !== false){
-                  $file = "files/seatOutput/output.csv";
-                  echo "<a href='download.php?name=".$file."'>Click Here to View the Output</a> (File is stored in /var/www/html/seat_allocation/files/seatOutput/output.csv)</br> ";
+                  $outputfile = "files/seatOutput/output.csv";
+                  echo "<a href='download.php?name=".$outputfile."'>Click Here to View the Output</a> (File is stored in /var/www/html/seat_allocation/files/seatOutput/output.csv)</br> ";
+                  if ($_POST["coursePreferences"] == "1") {
+                    $coursePrefFile = "files/seatOutput/coursePreferenceList.csv";
+                    echo "<a href='download.php?name=".$coursePrefFile."'>Click Here to View the Generated coursePreferenceList</a> (File is stored in /var/www/html/seat_allocation/files/seatOutput/coursePreferenceList.csv)</br> ";
+                  }
                   $emails = "files/seatOutput/emails.tar.gz";
                   echo "<a href='download.php?name=".$emails."'>Click Here to Download the Emails</a> (Files are stored in /var/www/html/seat_allocation/files/seatOutput/studentEmails/)</br>" ;
                   echo "<form method='post' action='uploadDB.php'>" ;
                   echo "Enter a name for Database to save: " ;
                   echo "<input type='text' name='database'></br>" ;
+                  echo "<input type='hidden' name='coursePreferences' value='".$_POST["coursePreferences"]."'></br>" ;
                   echo "<input type='submit' value='Save' name='btnSubmit'></br>" ;
                   echo "</form>" ;
                 }
