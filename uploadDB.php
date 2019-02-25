@@ -40,7 +40,7 @@
   <div id="wrapper">
 
     <!-- Navigation -->
-<?php include("sideBar.php"); ?>
+    <?php include("sideBar.php"); ?>
     <div id="page-wrapper">
       <div class="row">
         <?php
@@ -69,7 +69,7 @@
           array_pop($lines);
 
           if ($_POST["coursePreferences"] == "1") {
-            $lines[5] = "files/seatOutput/coursePreferenceList.csv\n";
+            $lines[5] = "files/seatOutput/coursePreferences.csv\n";
           }
 
           // Join the array back into a string
@@ -107,8 +107,8 @@
             $outputfile = "files/seatOutput/output.csv";
             echo "<a href='download.php?name=".$outputfile."'>Click Here to View the Output</a> (File is stored in /var/www/html/seat_allocation/files/seatOutput/output.csv)</br> ";
             if ($_POST["coursePreferences"] == "1") {
-              $coursePrefFile = "files/seatOutput/coursePreferenceList.csv";
-              echo "<a href='download.php?name=".$coursePrefFile."'>Click Here to View the Generated coursePreferenceList</a> (File is stored in /var/www/html/seat_allocation/files/seatOutput/coursePreferenceList.csv)</br> ";
+              $coursePrefFile = "files/seatOutput/coursePreferences.csv";
+              echo "<a href='download.php?name=".$coursePrefFile."'>Click Here to View the Generated coursePreferences</a> (File is stored in /var/www/html/seat_allocation/files/seatOutput/coursePreferences.csv)</br> ";
             }
             $emails = "files/seatOutput/emails.tar.gz";
             echo "<a href='download.php?name=".$emails."'>Click Here to Download the Emails</a> (Files are stored in /var/www/html/seat_allocation/files/seatOutput/studentEmails/)</br>" ;

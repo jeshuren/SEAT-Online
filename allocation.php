@@ -66,42 +66,35 @@ include('session.php');
           </div>
         </div>
       </div>
-      <!-- /#wrapper -->
+    </div>
+  </div>
+  <!-- /#wrapper -->
 
-      <!-- jQuery -->
-      <script src="vendor/jquery/jquery.min.js"></script>
+  <!-- jQuery -->
+  <script src="vendor/jquery/jquery.min.js"></script>
 
-      <!-- Bootstrap Core JavaScript -->
-      <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+  <!-- Bootstrap Core JavaScript -->
+  <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 
-      <!-- Metis Menu Plugin JavaScript -->
-      <script src="vendor/metisMenu/metisMenu.min.js"></script>
+  <!-- Metis Menu Plugin JavaScript -->
+  <script src="vendor/metisMenu/metisMenu.min.js"></script>
 
-      <!-- Morris Charts JavaScript -->
-      <script src="vendor/raphael/raphael.min.js"></script>
-      <script src="vendor/morrisjs/morris.min.js"></script>
-      <script src="data/morris-data.js"></script>
-      
-      <!-- Custom Theme JavaScript -->
-      <script src="dist/js/sb-admin-2.js"></script>
-      <script language="javascript">
-      $(document).ready(function(){
-        $('input[name="coursePreferences"]').change(function(){
-          if ($(this).val() == 2){
-            alert('Please upload coursePreferences.csv along with other input files!');
-          }
-        });
-      });
-      </script>
-      <?php
-      if (isset($_GET["msg"]))
-      {
-        echo '<script language="javascript">';
-        echo 'alert("'.$_GET["msg"].'")';
-        echo '</script>';
-      }
-      ?>
+  <!-- Morris Charts JavaScript -->
+  <script src="vendor/raphael/raphael.min.js"></script>
+  <script src="vendor/morrisjs/morris.min.js"></script>
+  <script src="data/morris-data.js"></script>
 
-    </body>
+  <!-- Custom Theme JavaScript -->
+  <script src="dist/js/sb-admin-2.js"></script>
+  <?php
+  if (isset($_GET["msg"]))
+  {
+    echo '<script language="javascript">';
+    echo 'alert("'.$_GET["msg"].'")';
+    echo '</script>';
+  }
+  ?>
 
-    </html>
+</body>
+
+</html>

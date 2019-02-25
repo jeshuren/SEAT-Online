@@ -71,7 +71,7 @@ include('session.php');
               <form action="upload.php" method="post" enctype="multipart/form-data" name="formUploadFile">
                 <label>Coure Preferences</label> <br />
                 <input type="radio" name="coursePreferences" value="1" checked>Generate new coursePreferences</input>
-                <input type="radio" name="coursePreferences" value="2" >Use uploaded coursePreferenceList.csv</input>
+                <input type="radio" name="coursePreferences" value="2" >Use uploaded coursePreferences.csv</input>
                 <br />
                 <br />
                 <label>Algorithm to run</label> <br />
@@ -114,81 +114,83 @@ include('session.php');
                   }
                 }
                 ?>
-              </div>
-              <!-- /.panel-body -->
+              </ul>
             </div>
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                Previous Allocation Download
-              </div>
-              <!-- /.panel-heading -->
-              <div class="panel-body">
-                <form action="dumpCSV.php" method="post">
-                  <label>Select the name for Database to download: </label>
-                  <?php
-                  $ini_array = parse_ini_file("config/config.cfg");
-                  $link = mysql_connect($ini_array['hostname'].':'.$ini_array['port'], $ini_array['username'], $ini_array['password']);
-                  $res = mysql_query("SHOW DATABASES");
-                  echo '<select name="database"><option value="">Select a Database</option>';
-                  while ($row = mysql_fetch_assoc($res)) {
-
-                    $x = split('_',$row['Database']);
-                    if ($x[0] == 'db' && $x[1] == 'seat')
-                    {
-                      echo '<option value="'.$x[2].'">'.$x[2].'</option>';
-                    }
-                  }
-                  echo '</select>';
-                  ?>
-                  <!-- <input type="text" name="database" /> -->
-                  <br /><br />
-                  <button type="submit" class="btn btn-primary" name="btnSubmit">Download</button>
-                </form>
-              </div>
-            </div>
-
+            <!-- /.panel-body -->
           </div>
-          <!-- /.row -->
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              Previous Allocation Download
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+              <form action="dumpCSV.php" method="post">
+                <label>Select the name for Database to download: </label>
+                <?php
+                $ini_array = parse_ini_file("config/config.cfg");
+                $link = mysql_connect($ini_array['hostname'].':'.$ini_array['port'], $ini_array['username'], $ini_array['password']);
+                $res = mysql_query("SHOW DATABASES");
+                echo '<select name="database"><option value="">Select a Database</option>';
+                while ($row = mysql_fetch_assoc($res)) {
+
+                  $x = split('_',$row['Database']);
+                  if ($x[0] == 'db' && $x[1] == 'seat')
+                  {
+                    echo '<option value="'.$x[2].'">'.$x[2].'</option>';
+                  }
+                }
+                echo '</select>';
+                ?>
+                <!-- <input type="text" name="database" /> -->
+                <br /><br />
+                <button type="submit" class="btn btn-primary" name="btnSubmit">Download</button>
+              </form>
+            </div>
+          </div>
+
         </div>
-        <!-- /#page-wrapper -->
-
+        <!-- /.row -->
       </div>
-      <!-- /#wrapper -->
+      <!-- /#page-wrapper -->
 
-      <!-- jQuery -->
-      <script src="vendor/jquery/jquery.min.js"></script>
+    </div>
+  </div>
+  <!-- /#wrapper -->
 
-      <!-- Bootstrap Core JavaScript -->
-      <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+  <!-- jQuery -->
+  <script src="vendor/jquery/jquery.min.js"></script>
 
-      <!-- Metis Menu Plugin JavaScript -->
-      <script src="vendor/metisMenu/metisMenu.min.js"></script>
+  <!-- Bootstrap Core JavaScript -->
+  <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 
-      <!-- Morris Charts JavaScript -->
-      <script src="vendor/raphael/raphael.min.js"></script>
-      <script src="vendor/morrisjs/morris.min.js"></script>
-      <script src="data/morris-data.js"></script>
+  <!-- Metis Menu Plugin JavaScript -->
+  <script src="vendor/metisMenu/metisMenu.min.js"></script>
 
-      <!-- Custom Theme JavaScript -->
-      <script src="dist/js/sb-admin-2.js"></script>
-      <script language="javascript">
-      $(document).ready(function(){
-        $('input[name="coursePreferences"]').change(function(){
-          if ($(this).val() == 2){
-            alert('Please upload coursePreferenceList.csv along with other input files!');
-          }
-        });
-      });
-      </script>
-      <?php
-      if (isset($_GET["msg"]))
-      {
-        echo '<script language="javascript">';
-        echo 'alert("'.$_GET["msg"].'")';
-        echo '</script>';
+  <!-- Morris Charts JavaScript -->
+  <script src="vendor/raphael/raphael.min.js"></script>
+  <script src="vendor/morrisjs/morris.min.js"></script>
+  <script src="data/morris-data.js"></script>
+
+  <!-- Custom Theme JavaScript -->
+  <script src="dist/js/sb-admin-2.js"></script>
+  <script language="javascript">
+  $(document).ready(function(){
+    $('input[name="coursePreferences"]').change(function(){
+      if ($(this).val() == 2){
+        alert('Please upload coursePreferences.csv along with other input files!');
       }
-      ?>
+    });
+  });
+  </script>
+  <?php
+  if (isset($_GET["msg"]))
+  {
+    echo '<script language="javascript">';
+    echo 'alert("'.$_GET["msg"].'")';
+    echo '</script>';
+  }
+  ?>
 
-    </body>
+</body>
 
-    </html>
+</html>

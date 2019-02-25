@@ -2,7 +2,7 @@
 include('login.php'); // Includes Login Script
 
 if(isset($_SESSION['login_user'])){
-header("location: allocation.php");
+  header("location: allocation.php");
 }
 ?>
 <!DOCTYPE html>
@@ -62,37 +62,40 @@ header("location: allocation.php");
             </div>
             <!-- /.panel-heading -->
             <div class="panel-body">
-<form action="" method="post">
-<div class="form-group">
-<label>UserName :</label>
-<input class="form-control" id="name" name="username" placeholder="username" type="text" size="20"></br>
-<label>Password :</label>
-<input class="form-control" id="password" name="password" placeholder="**********" type="password" size="20"></br>
-<button name="submit" type="submit" class="btn btn-default">Login</button>
-<span><?php echo $error; ?></span>
-</form>
+              <form action="" method="post">
+                <div class="form-group">
+                  <label>UserName :</label>
+                  <input class="form-control" id="name" name="username" placeholder="username" type="text" size="20"></br>
+                  <label>Password :</label>
+                  <input class="form-control" id="password" name="password" placeholder="**********" type="password" size="20"></br>
+                  <button name="submit" type="submit" class="btn btn-default">Login</button>
+                  <span><?php echo $error; ?></span>
+                </form>
 
+              </div>
+              <!-- /.panel-body -->
             </div>
-            <!-- /.panel-body -->
           </div>
         </div>
       </div>
-      <!-- /#wrapper -->
+    </div>
+  </div>
+  <!-- /#wrapper -->
 
-      <!-- jQuery -->
-      <script src="vendor/jquery/jquery.min.js"></script>
+  <!-- jQuery -->
+  <script src="vendor/jquery/jquery.min.js"></script>
 
-      <!-- Bootstrap Core JavaScript -->
-      <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+  <!-- Bootstrap Core JavaScript -->
+  <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 
-      <!-- Metis Menu Plugin JavaScript -->
-      <script src="vendor/metisMenu/metisMenu.min.js"></script>
+  <!-- Metis Menu Plugin JavaScript -->
+  <script src="vendor/metisMenu/metisMenu.min.js"></script>
 
-      <!-- Morris Charts JavaScript -->
-      <script src="vendor/raphael/raphael.min.js"></script>
-      <script src="vendor/morrisjs/morris.min.js"></script>
-      <script src="data/morris-data.js"></script>
+  <!-- Morris Charts JavaScript -->
+  <script src="vendor/raphael/raphael.min.js"></script>
+  <script src="vendor/morrisjs/morris.min.js"></script>
+  <script src="data/morris-data.js"></script>
 
-    </body>
+</body>
 
-    </html>
+</html>
